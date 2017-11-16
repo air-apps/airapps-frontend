@@ -16,7 +16,9 @@ export default class App extends React.Component {
       return new Promise((resolve, reject) => {
         setTimeout(() => resolve(
           { items: [
-            { type: 'button', attributes: { title: 'Hello world', color:'red' } }
+            { type: 'button', attributes: { title: 'Hello world', color:'red' } },
+            { type: 'listitem', attributes: { text: 'List item', imageURL: 'https://www.facebook.com/apple-touch-icon.png',
+            key: '1' } }
           ],
             loading: false
           }
@@ -32,8 +34,6 @@ export default class App extends React.Component {
 
 
   render() {
-    
-
     console.log('apple')
     return (
       <View style={styles.container}>
@@ -51,4 +51,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
