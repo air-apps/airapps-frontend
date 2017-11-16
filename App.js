@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { insertJsx } from './utils/jsxHelper.js'
 
 export default class App extends React.Component {
 
   constructor(props){
     super(props)
     this.state = {
-      jsx: {items: []}
+      jsx: {items: []},
+      loading: true,
     }
   }
 
@@ -15,7 +17,9 @@ export default class App extends React.Component {
         setTimeout(() => resolve(
           { items: [
             { type: 'button', attributes: { title: 'Hello world', color:'red' } }
-          ] }
+          ],
+            loading: false
+          }
         ), 1000)
       })
     }
@@ -29,26 +33,11 @@ export default class App extends React.Component {
 
   render() {
     
-    insertJsx = (jsx) => {
-      console.log(jsx)
-     return Object.keys(jsx.items).map((index) => {
-       const item = jsx.items[index]
-       switch (item.type){
-         case 'button': 
-           return (<Button title={item.attributes.title} color={item.attributes.color} />)
-         default:
-           return 
-       }
-      })
-    }
 
     console.log('apple')
     return (
       <View style={styles.container}>
         {insertJsx(this.state.jsx)}
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
       </View>
     );
   }
