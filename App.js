@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { insertJsx } from './utils/jsxHelper.js'
+import { parseJson } from './utils/jsonHelper.js'
 
 export default class App extends React.Component {
 
   constructor(props){
     super(props)
     this.state = {
-      jsx: {items: []},
+      json: {items: []},
       loading: true,
     }
   }
@@ -25,9 +25,9 @@ export default class App extends React.Component {
     }
 
   async componentDidMount() {
-    // This is where we get the custom jsx
-    const jsx = await this.fakeFetch()
-    this.setState({jsx})
+    // This is where we get the custom json
+    const json = await this.fakeFetch()
+    this.setState({json})
   }
 
 
@@ -37,7 +37,7 @@ export default class App extends React.Component {
     console.log('apple')
     return (
       <View style={styles.container}>
-        {insertJsx(this.state.jsx)}
+        {parseJson(this.state.json)}
       </View>
     );
   }
