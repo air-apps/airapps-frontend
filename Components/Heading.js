@@ -17,7 +17,7 @@ class Heading extends Component {
     const {imageUrl} = this.props
     return (
       <View >
-      <Image blurRadius={3} source={{uri: imageUrl}}
+      <Image blurRadius={4} source={{uri: imageUrl}}
         style={{width:width, height: 210, position: 'absolute', top:-60, left:0, zIndex: 0 }} 
       />
       <View style={{backgroundColor: 'rgba(0,0,0,0)'}}>  
@@ -27,8 +27,8 @@ class Heading extends Component {
             fontFamily: 'Avenir', 
             marginLeft:20,
             marginTop: 20,
-            textShadowColor: 'rgba(0,0,0,0.3)',
-            textShadowOffset: {width: -1, height: -1},
+            textShadowColor: 'rgba(0,0,0,0.4)',
+            textShadowOffset: {width: 1, height: 1},
             color:'white'}}> 
             {this.props.title} </Text>
         <Text 
@@ -37,8 +37,8 @@ class Heading extends Component {
             fontFamily: 'Avenir', 
             marginLeft:20,
             marginTop: 0,
-            textShadowColor: 'rgba(0,0,0,0.3)',
-            textShadowOffset: {width: -1, height: -1},
+            textShadowColor: 'rgba(0,0,0,0.4)',
+            textShadowOffset: {width: 1, height: 1},
             color:'white'}}> 
             {this.props.tag} </Text>
         <Text 
@@ -47,8 +47,8 @@ class Heading extends Component {
             fontFamily: 'Avenir', 
             marginLeft:20,
             marginTop: 0,
-            textShadowColor: 'rgba(0,0,0,0.3)',
-            textShadowOffset: {width: -1, height: -1},
+            textShadowColor: 'rgba(0,0,0,0.4)',
+            textShadowOffset: {width: 1, height: 1},
             color:'white'}}> 
             {this.props.location} </Text>
   </View>

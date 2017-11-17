@@ -120,6 +120,6 @@ export default RootNavigator
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#DEDEDE',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
 });
