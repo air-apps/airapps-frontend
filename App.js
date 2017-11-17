@@ -1,10 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 StatusBar.setBarStyle('light-content', true);
-import { StyleSheet, Dimensions, Image, Text, View, Button, FlatList } from 'react-native';
+import { StyleSheet, TouchableHighlight, Dimensions, Image, Text, View, Button, FlatList } from 'react-native';
 import { parseJson } from './utils/jsonHelper.js'
 import Hero from './Components/Hero'
 import {Promise} from 'es6-promise'
+import NavBar from './Components/NavBar.js'
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -59,23 +60,26 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {parseJson(this.state.json)}
+        {parseJson(this.state.json, this.props.navigation)}
       </View>
     );
   }
 }
 
-const LocationImage = ({url, text}) => {
+const LocationImage = ({url, text, nav}) => {
 
   {/*  TEXT CAN ONLY BE SOO LONG*/}
   if (text.length > 11) {
     text = text.slice(0,11).trim() + '..'
   }
+  console.log(nav.navigate)
   return (
-    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}}>
-      <Image source={{uri: url}} style={{height:56, width:56, borderRadius:28}} />
-      <Text style={{fontSize:10}}>{text}</Text>
-    </View>
+    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}} >
+    <TouchableHighlight onPress={() =>nav.navigate('Location')} underlayColor={'rgba(0,0,0,0)'}>
+        <Image source={{uri: url}} style={{height:56, width:56, borderRadius:28}} />
+    </TouchableHighlight>
+        <Text style={{fontSize:10}}>{text}</Text>
+      </View>
   )
 }
 
@@ -93,7 +97,7 @@ class FacebookHome extends React.Component {
       {/* render location images */}
       <FlatList
         data= {[ {key: 'a', url: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/aaa.jpg', text: 'Apple Palo Alto'}, {text: 'Mexican', key: 'b', url: 'https://media-cdn.tripadvisor.com/media/photo-s/03/9e/df/45/mi-casa-mexican-restaurant.jpg'}]}
-      renderItem={({item}) => <LocationImage url={item.url} text={item.text} /> }
+      renderItem={({item}) => <LocationImage url={item.url} text={item.text} nav={this.props.navigation}/> }
         horizontal
       />
 
@@ -112,7 +116,10 @@ const RootNavigator = StackNavigator({
   },
   Location: {
     screen: App,
-    }
+  },
+  NavBarOnlyHereToGetProps:{
+    screen: NavBar,
+  }
 }, {
   headerMode: 'none'
 })

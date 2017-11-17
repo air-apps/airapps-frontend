@@ -4,7 +4,7 @@ import {List} from '../Components/List';
 import Heading from '../Components/Heading'
 import Hero from '../Components/Hero'
 
-export const parseJson = (json) => {
+export const parseJson = (json, navigation) => {
      return Object.keys(json.items).map((index) => {
        const item = json.items[index]
        switch (item.type){
@@ -18,6 +18,7 @@ export const parseJson = (json) => {
           return (<List listitems={item.attributes} />)
         case 'header':
            return (      <Hero 
+            nav={navigation}
             title={item.attributes.title} 
             tag={item.attributes.tag}
             location={item.attributes.location}

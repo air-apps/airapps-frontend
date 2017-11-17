@@ -1,10 +1,6 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, Text, View, Button, Image, Dimensions } from 'react-native';
-import {
-  StackNavigator,
-} from 'react-navigation';
-
+import { StyleSheet, Text, View, Button, Image, Dimensions, TouchableHighlight } from 'react-native';
 
 class NavBar extends Component {
   static propTypes = {
@@ -17,14 +13,17 @@ class NavBar extends Component {
   }
 
   render() {
-
     return (
       <View style={{ marginTop:30, marginLeft:20, zIndex:99, backgroundColor: 'rgba(0,0,0,0)' }}>
+            <TouchableHighlight onPress={() => {this.props.nav.navigate('Home')}} underlayColor={'rgba(0,0,0,0)'} >
         <Text style={{fontSize: 18, fontWeight: '300', color:'white', textShadowColor: 'rgba(0,0,0,0.3)',
             textShadowOffset: {width: -1, height: -1}}}>
+              
           <Text style={{fontSize:24, fontWeight: 'bold', textShadowColor: 'rgba(0,0,0,0.3)',
             textShadowOffset: {width: -1, height: -1}}}> {'<'} </Text>
-          {'Nearby'}</Text>
+          {'Nearby'}
+        </Text>
+      </TouchableHighlight>
       </View>
 
     );

@@ -17,7 +17,9 @@ class Hero extends Component {
   render() {
     return (
       <View style={{flex:1, flexDirection: 'column'}}>
-        <NavBar />
+        <NavBar 
+          nav={this.props.nav}
+        />
         <Heading
           title={this.props.title}
           tag={this.props.tag}
