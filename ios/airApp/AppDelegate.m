@@ -11,6 +11,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#define appDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 @implementation AppDelegate
 
