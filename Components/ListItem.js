@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
   },
+  listitem: {
+    flex: 1,
+  },
   image: {
     marginLeft: 5,
     marginRight: 5,

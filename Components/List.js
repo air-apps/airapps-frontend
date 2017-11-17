@@ -19,6 +19,7 @@ export class List extends Component {
 
     return (
       <FlatList
+        style={{ flex:1 }}
         horizontal={true}
         data={listitems}
         renderItem={({item}) => <ListItem

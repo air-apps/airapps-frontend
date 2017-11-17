@@ -21,11 +21,25 @@ class App extends React.Component {
       return new Promise((resolve) => {
         setTimeout(() => resolve(
           { items: [
-            { type: 'heading', attributes: { title: 'ASOS'} },
-            { type: 'background', attributes: { imageUrl: '' } },
-            { type: 'button', attributes: { title: 'Hello world', color:'red' } },
-            { type: 'listitem', attributes: { text: 'List item', imageURL: 'https://www.facebook.com/apple-touch-icon.png',
-            key: '1' } }
+            {type: 'header', attributes: {title: 'Apple Palo Alto', tag: '@ApplePaloAlto', location: 'Apple Palo Alto', imageUrl: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg' } },
+     {
+              type: 'list',
+              attributes: [
+                {
+                  text: 'List item',
+                  imageURL:
+                      'https://www.facebook.com/apple-touch-icon.png',
+                  key: '1'
+                },
+                {
+                  text: 'List item2 ',
+                  imageURL:
+                      'https://www.facebook.com/apple-touch-icon.png',
+                  key: '2'
+                }
+              ]
+            }
+          
           ],
             loading: false
           }
@@ -43,13 +57,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {/*parseJson(this.state.json) */}
-      <Hero 
-        title={'Apple Palo Alto'} 
-        tag={'@ApplePaloAlto'}
-        location={'Palo Alto, California'}
-        imageUrl={'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg'}
-      />
+        {parseJson(this.state.json)}
       </View>
     );
   }
