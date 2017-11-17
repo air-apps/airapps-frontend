@@ -36,7 +36,7 @@ class Hero extends Component {
             left: 0,
             zIndex: -1
           }}
-          source={{uri: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg'}}
+          source={{uri: this.props.imageUrl}}
           blurRadius={10}
         />
       </View>

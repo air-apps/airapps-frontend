@@ -14,10 +14,10 @@ class Heading extends Component {
 
   render() {
     const {width} = Dimensions.get('window')
-    console.log(width)
+    const {imageUrl} = this.props
     return (
       <View >
-      <Image blurRadius={3} source={{uri: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/aaa.jpg'}}
+      <Image blurRadius={3} source={{uri: imageUrl}}
         style={{width:width, height: 210, position: 'absolute', top:-60, left:0, zIndex: 0 }} 
       />
       <View style={{backgroundColor: 'rgba(0,0,0,0)'}}>  
