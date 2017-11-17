@@ -1,9 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { parseJson } from './utils/jsonHelper.js'
+import Hero from './Components/Hero'
 import {Promise} from 'es6-promise'
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor(props){
     super(props)
@@ -17,6 +21,8 @@ export default class App extends React.Component {
       return new Promise((resolve) => {
         setTimeout(() => resolve(
           { items: [
+            { type: 'heading', attributes: { title: 'ASOS'} },
+            { type: 'background', attributes: { imageUrl: '' } },
             { type: 'button', attributes: { title: 'Hello world', color:'red' } },
             { type: 'listitem', attributes: { text: 'List item', imageURL: 'https://www.facebook.com/apple-touch-icon.png',
             key: '1' } }
@@ -37,17 +43,34 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        {parseJson(this.state.json)}
+        {/*parseJson(this.state.json) */}
+      <Hero 
+        title={'Apple Palo Alto'} 
+        tag={'@ApplePaloAlto'}
+        location={'Palo Alto, California'}
+        imageUrl={'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg'}
+      />
       </View>
     );
   }
 }
 
+
+const RootNavigator = StackNavigator({
+  Home: {
+    screen: App,
+    navigationOptions: {
+      headerTintColor: 'black'
+    }
+  }
+}, {
+  headerMode: 'none'
+})
+export default RootNavigator
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
