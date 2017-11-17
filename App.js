@@ -25,7 +25,24 @@ class App extends React.Component {
         setTimeout(() => resolve(
           { items: [
             {type: 'header', attributes: {title: 'Apple Palo Alto', tag: '@ApplePaloAlto', location: 'Apple Palo Alto', imageUrl: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg' } },
-     {
+            {
+              type: 'loyalty',
+              attributes:
+              {
+                title: 'Starbucks Loyalty Points',
+                value: '100'
+              }
+            },
+            {
+              type: 'coupon',
+              attributes:
+              {
+                title: 'Deal of the day boys',
+                description: 'Present this hot shit in store for a gr8 deal',
+                imageURL: 'https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fjoshparnham.com&chs=180x180&choe=UTF-8&chld=L|2'
+              }
+            },
+            {
               type: 'list',
               attributes: [
                 {
@@ -128,6 +145,6 @@ export default RootNavigator
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#DEDEDE',
   },
 });
