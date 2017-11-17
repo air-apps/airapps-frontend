@@ -15,9 +15,9 @@ class Hero extends Component {
   }
 
   render() {
-    const {width} = Dimensions.get('window')
+    const {width,height} = Dimensions.get('window')
     return (
-      <View style={{flex:1, flexDirection: 'column'}}>
+      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'rgba(0,0,0,1)'}}>
         <NavBar 
           nav={this.props.nav}
         />
@@ -30,11 +30,12 @@ class Hero extends Component {
         <Image
           style={{
             width: width,
-            height: 900,
+            height: height*4/3,
             position: 'absolute',
-            top: 0,
-            left: 0,
-            zIndex: -1
+            top: -height/3,
+            bottom: 0,
+            zIndex: -1,
+            opacity: 1
           }}
           source={{uri: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg'}}
           blurRadius={10}

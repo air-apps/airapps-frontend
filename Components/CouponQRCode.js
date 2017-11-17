@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     row: {
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0)'
     },
     heading: {
         lineHeight: 15,
