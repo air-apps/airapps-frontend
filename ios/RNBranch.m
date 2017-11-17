@@ -10,31 +10,44 @@
 
 #import "AppDelegate.h"
 
-@interface RNBranch()
+@interface RNBranch() <PKPaymentAuthorizationViewControllerDelegate>
 @end
 
 @implementation RNBranch
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(makePayment:(NSString *)test) {
-  
+RCT_EXPORT_METHOD(makePayment:(NSString *)price name:(NSString*)name) {
   PKPaymentRequest *request = [PKPaymentRequest new];
-  PKPaymentAuthorizationViewController *applePayController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:request];
-  [((AppDelegate *)[[UIApplication sharedApplication] delegate]).window.rootViewController presentViewController:applePayController animated:YES completion:^{
-    NSLog(@"Completed");
-  }];
   
-  NSDecimalNumber *value = [NSDecimalNumber decimalNumberWithMantissa:200 exponent:-2 isNegative:YES];
-  request.paymentSummaryItems = @[
-                                  [PKPaymentSummaryItem summaryItemWithLabel:test amount:value]
-                                  ];
+  NSDecimalNumber *value = [NSDecimalNumber decimalNumberWithString:price];
+  request.paymentSummaryItems = @[[PKPaymentSummaryItem summaryItemWithLabel:name amount:value]];
   
   request.merchantIdentifier = @"merchant.joshparnham.appair";
   request.supportedNetworks =  @[PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex];
-  request.merchantCapabilities = PKMerchantCapability3DS;
-  request.countryCode = @"US";
-  request.currencyCode = @"USD";
+  request.merchantCapabilities = PKMerchantCapabilityEMV;
+  request.countryCode = @"AU";
+  request.currencyCode = @"AUD";
+  
+  PKPaymentAuthorizationViewController *applePayController = [[PKPaymentAuthorizationViewController alloc] initWithPaymentRequest:request];
+  applePayController.delegate = self;
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    AppDelegate *del = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIViewController *root = del.window.rootViewController;
+    if (root && applePayController) {
+      [root presentViewController:applePayController animated:YES completion:nil];
+    }
+  });
+  
+}
+
+- (void)paymentAuthorizationViewControllerDidFinish:(PKPaymentAuthorizationViewController *)controller {
+  [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)paymentAuthorizationViewController:(PKPaymentAuthorizationViewController *)controller didAuthorizePayment:(PKPayment *)payment handler:(nonnull void (^)(PKPaymentAuthorizationResult * _Nonnull))completion {
+  completion(PKPaymentAuthorizationStatusSuccess);
 }
 
 @end

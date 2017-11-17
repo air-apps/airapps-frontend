@@ -28,6 +28,7 @@
     "react-native-payments": "0.3.1",
     "react-native-payments-addon-stripe": "11.1.0-1",
     "react-native-payments-cli": "0.2.0",
-    "whatwg-fetch": "2.0.3"
+    "react-native-snap-carousel": "^3.4.0",
+    "react-navigation": "^1.0.0-beta.19"
   }
 }
