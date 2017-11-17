@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Dimensions, Image, Text, View, Button, FlatList } from 'react-native';
 import { parseJson } from './utils/jsonHelper.js'
 import Hero from './Components/Hero'
 import {Promise} from 'es6-promise'
@@ -63,14 +63,54 @@ class App extends React.Component {
   }
 }
 
+const LocationImage = ({url, text}) => {
+
+  {/*  TEXT CAN ONLY BE SOO LONG*/}
+  if (text.length > 11) {
+    text = text.slice(0,11).trim() + '..'
+  }
+  return (
+    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}}>
+      <Image source={{uri: url}} style={{height:56, width:56, borderRadius:28}} />
+      <Text style={{fontSize:10}}>{text}</Text>
+    </View>
+  )
+}
+
+
+class FacebookHome extends React.Component {
+
+  render() {
+    const {width, height} = Dimensions.get('window')
+    return (
+      <View style={{flex:1, backgroundColor: 'rgba(0,0,0,0)'}}>
+        <Image source={require('./images/goodone.png') } style={{width: width, height: height, position: 'absolute', left:0, top:0}}/>
+        {/* need some custom shit to get locations in */}
+      <Text style={{marginTop:65, marginLeft: 10, fontWeight: '400', fontFamily: 'Helvetica Neue'}}> Near you </Text>
+
+      {/* render location images */}
+      <FlatList
+        data= {[ {key: 'a', url: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/aaa.jpg', text: 'Apple Palo Alto'}, {text: 'Mexican', key: 'b', url: 'https://media-cdn.tripadvisor.com/media/photo-s/03/9e/df/45/mi-casa-mexican-restaurant.jpg'}]}
+      renderItem={({item}) => <LocationImage url={item.url} text={item.text} /> }
+        horizontal
+      />
+
+      </View>
+    )
+  }
+}
+
+
+
+
 
 const RootNavigator = StackNavigator({
   Home: {
+    screen: FacebookHome,
+  },
+  Location: {
     screen: App,
-    navigationOptions: {
-      headerTintColor: 'black'
     }
-  }
 }, {
   headerMode: 'none'
 })
