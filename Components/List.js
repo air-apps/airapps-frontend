@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { ListItem } from './ListItem';
 
@@ -7,7 +7,7 @@ export class List extends Component {
 
    static defaultProps =
     PropTypes.arrayOf({
-      listitem: PropTypes.shape({
+      listitems: PropTypes.shape({
         text: PropTypes.string,
         imageURL: PropTypes.string,
         key: PropTypes.string
@@ -18,6 +18,8 @@ export class List extends Component {
     const {listitems} = this.props;
 
     return (
+      <View style={{ flex:1 }}>
+        <Text style={{ color:'#FFFFFF', left:8, bottom:8 }}>Order Now</Text>
       <FlatList
         style={{ flex:1 }}
         horizontal={true}
@@ -27,6 +29,7 @@ export class List extends Component {
               imageURL={item.imageURL}
               key={item.key}
             />}
-      />)
+      />
+      </View>)
   }
 }

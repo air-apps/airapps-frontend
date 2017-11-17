@@ -26,15 +26,17 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     fontSize: 15,
+    color: '#FFFFFF'
   },
   listitem: {
     flex: 1,
   },
   image: {
-    marginLeft: 5,
-    marginRight: 5,
-    marginBottom: 15,
-    width: 120,
-    height: 120,
+    marginLeft: 6,
+    marginRight: 6,
+    marginBottom: 6,
+    width: 100,
+    height: 100,
+    borderRadius: 14,
   },
 });
