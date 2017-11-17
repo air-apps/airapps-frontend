@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { parseJson } from './utils/jsonHelper.js'
+import {Promise} from 'es6-promise'
 
 export default class App extends React.Component {
 
@@ -13,7 +14,7 @@ export default class App extends React.Component {
   }
 
    fakeFetch () {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => resolve(
           { items: [
             { type: 'button', attributes: { title: 'Hello world', color:'red' } }
@@ -32,9 +33,6 @@ export default class App extends React.Component {
 
 
   render() {
-    
-
-    console.log('apple')
     return (
       <View style={styles.container}>
         {parseJson(this.state.json)}
