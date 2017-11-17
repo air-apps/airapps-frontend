@@ -14,17 +14,35 @@ export default class App extends React.Component {
   }
 
    fakeFetch () {
-      return new Promise((resolve) => {
-        setTimeout(() => resolve(
-          { items: [
-            { type: 'button', attributes: { title: 'Hello world', color:'red' } },
-            { type: 'listitem', attributes: { text: 'List item', imageURL: 'https://www.facebook.com/apple-touch-icon.png',
-            key: '1' } }
-          ],
-            loading: false
-          }
-        ), 1000)
-      })
+     return new Promise((resolve) => {
+       setTimeout(
+             () => resolve({
+               items: [
+                 {
+                   type: 'button',
+                   attributes: {title: 'Hello world', color: 'red'}
+                 },
+                 {
+                   type: 'list',
+                   attributes: [
+                     {
+                       text: 'List item',
+                       imageURL:
+                           'https://www.facebook.com/apple-touch-icon.png',
+                       key: '1'
+                     },
+                     {
+                       text: 'List item2 ',
+                       imageURL:
+                           'https://www.facebook.com/apple-touch-icon.png',
+                       key: '2'
+                     }
+                   ]
+                 }
+               ],
+               loading: false
+             }),
+             5000)})
     }
 
   async componentDidMount() {
