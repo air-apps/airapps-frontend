@@ -29,3 +29,11 @@ export const parseJson = (json, navigation) => {
        }
       })
     }
+
+export const safeGet = ( fn, returnVal  ) => {
+  try {
+    return fn()
+  } catch (e) {
+    return returnVal
+  }
+}

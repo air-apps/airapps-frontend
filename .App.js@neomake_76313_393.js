@@ -52,7 +52,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     // This is where we get the custom json
-    const json = await fetch('https://airapps-api.now.sh/apps')
+    const json = await this.fakeFetch()
     this.setState({json})
   }
 
@@ -66,7 +66,7 @@ class App extends React.Component {
   }
 }
 
-const LocationImage = ({url, text, nav, id}) => {
+const LocationImage = ({url, text, nav}) => {
 
   {/*  TEXT CAN ONLY BE SOO LONG*/}
   if (text.length > 11) {
@@ -74,7 +74,7 @@ const LocationImage = ({url, text, nav, id}) => {
   }
   console.log(nav.navigate)
   return (
-    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center', key:{id}}} >
+    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}} >
     <TouchableHighlight onPress={() =>nav.navigate('Location')} underlayColor={'rgba(0,0,0,0)'}>
         <Image source={{uri: url}} style={{height:56, width:56, borderRadius:28}} />
     </TouchableHighlight>
@@ -85,24 +85,9 @@ const LocationImage = ({url, text, nav, id}) => {
 
 
 class FacebookHome extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {json:{}}
-  }
-
-  async componentDidMount () {
-    console.log('fetch')
-    console.log(fetch)
-    fetch('https://airapps-api.now.sh/apps')
-      .then(( response) => console.log(response))
-      .catch((e) => console.log(e))
-    //console.log('response', response)
-    //this.setState({response})
-  }
 
   render() {
     const {width, height} = Dimensions.get('window')
-      console.log('state', this.state.json)
     return (
       <View style={{flex:1, backgroundColor: 'rgba(0,0,0,0)'}}>
         <Image source={require('./images/goodone.png') } style={{width: width, height: height, position: 'absolute', left:0, top:0}}/>
@@ -111,14 +96,10 @@ class FacebookHome extends React.Component {
 
       {/* render location images */}
       <FlatList
-        data={this.state.json}
-        renderItem={({item}) => <LocationImage 
-          url={item.imageUrl} 
-          id={item._id}
-          text={ safeGet( () => item.template.items[0].attributes.title, "err") }
-          nav={this.props.navigation}/> }
-          horizontal
-        />
+        data= {[ {key: 'a', url: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/aaa.jpg', text: 'Apple Palo Alto'}, {text: 'Mexican', key: 'b', url: 'https://media-cdn.tripadvisor.com/media/photo-s/03/9e/df/45/mi-casa-mexican-restaurant.jpg'}]}
+      renderItem={({item}) => <LocationImage url={item.url} text={item.text} nav={this.props.navigation}/> }
+        horizontal
+      />
 
       </View>
     )
