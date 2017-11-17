@@ -7,8 +7,8 @@ import {Loyalty} from '../Components/Loyalty';
 import {CouponQRCode} from '../Components/CouponQRCode'
 
 export const parseJson = (json, navigation) => {
-     return Object.keys(json.items).map((index) => {
-       const item = json.items[index]
+     return Object.keys(json.template.items).map((index) => {
+       const item = json.template.items[index]
        switch (item.type){
         case 'heading':
            return (<Heading 
