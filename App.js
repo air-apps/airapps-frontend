@@ -1,4 +1,6 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
+StatusBar.setBarStyle('light-content', true);
 import { StyleSheet, Dimensions, Image, Text, View, Button, FlatList } from 'react-native';
 import { parseJson } from './utils/jsonHelper.js'
 import Hero from './Components/Hero'
