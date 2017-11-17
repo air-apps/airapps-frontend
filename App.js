@@ -23,8 +23,8 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    const appName = 'starbucks'
-    const data = await fetch(`https://airapps-api.now.sh/apps/${appName}`) //this.fakeFetch()
+    const { name } = this.props.navigation.state.params
+    const data = await fetch(`https://airapps-api.now.sh/apps/${name}`) //this.fakeFetch()
     const json = (await data.json()).data
     this.setState({json})
   }
@@ -39,7 +39,7 @@ class App extends React.Component {
   }
 }
 
-const LocationImage = ({url, text, nav, key}) => {
+const LocationImage = ({name, url, text, nav, key}) => {
 
   {/*  TEXT CAN ONLY BE SOO LONG*/}
   if (text.length > 11) {
@@ -47,7 +47,7 @@ const LocationImage = ({url, text, nav, key}) => {
   }
   return (
     <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}} key={key} >
-    <TouchableHighlight onPress={() =>nav.navigate('Location')} underlayColor={'rgba(0,0,0,0)'}>
+    <TouchableHighlight onPress={() =>nav.navigate('Location', {name})} underlayColor={'rgba(0,0,0,0)'}>
         <Image source={{uri: url}} style={{height:56, width:56, borderRadius:28}} />
     </TouchableHighlight>
         <Text style={{fontSize:10}}>{text}</Text>
@@ -90,7 +90,7 @@ class FacebookHome extends React.Component {
 
       <FlatList
         data={this.state.json}
-      renderItem={({item}) => <LocationImage url={item.imageUrl} text={item.template.items[0].attributes.title} key={item._id} nav={this.props.navigation}/> }
+      renderItem={({item}) => <LocationImage name={item.name} url={item.imageUrl} text={item.template.items[0].attributes.title} key={item._id} nav={this.props.navigation}/> }
         horizontal
       />
       </View>
