@@ -15,7 +15,7 @@ class NavBar extends Component {
   render() {
     return (
       <View style={{ marginTop:30, marginLeft:20, zIndex:99, backgroundColor: 'rgba(0,0,0,0)' }}>
-            <TouchableHighlight onPress={() => {this.props.nav.navigate('Home')}} underlayColor={'rgba(0,0,0,0)'} >
+            <TouchableHighlight onPress={() => {this.props.nav.goBack()}} underlayColor={'rgba(0,0,0,0)'} >
         <Text style={{fontSize: 18, fontWeight: '300', color:'white', textShadowColor: 'rgba(0,0,0,0.3)',
             textShadowOffset: {width: -1, height: -1}}}>
               
