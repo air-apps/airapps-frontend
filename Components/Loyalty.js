@@ -35,5 +35,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 15,
     marginRight: 15,
+    color: 'white',
+    textShadowColor: 'rgba(0,0,0,0.4)',
+    textShadowOffset: {width: 1, height: 1},
   }
 });
