@@ -31,13 +31,24 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0)'
     },
     heading: {
-        lineHeight: 15,
-        fontSize: 15,
+        lineHeight: 25,
+        fontSize: 25,
+        marginBottom: 10,
+        color: 'white',
+        textShadowColor: 'rgba(0,0,0,0.4)',
+        textShadowOffset: {width: 1, height: 1},
     },
     description: {
+        lineHeight: 18,
+        fontSize: 18,
+        marginBottom: 10,
+        color: 'white',
+        textShadowColor: 'rgba(0,0,0,0.4)',
+        textShadowOffset: {width: 1, height: 1},
     },
     image: {
-        width: 120,
-        height: 120,
+        width: 240,
+        height: 240,
+        marginBottom: 150,
     }
   });
