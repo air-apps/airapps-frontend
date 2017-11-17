@@ -39,14 +39,14 @@ class App extends React.Component {
   }
 }
 
-const LocationImage = ({url, text, nav}) => {
+const LocationImage = ({url, text, nav, key}) => {
 
   {/*  TEXT CAN ONLY BE SOO LONG*/}
   if (text.length > 11) {
     text = text.slice(0,11).trim() + '..'
   }
   return (
-    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}} >
+    <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}} key={key} >
     <TouchableHighlight onPress={() =>nav.navigate('Location')} underlayColor={'rgba(0,0,0,0)'}>
         <Image source={{uri: url}} style={{height:56, width:56, borderRadius:28}} />
     </TouchableHighlight>
@@ -58,7 +58,27 @@ const LocationImage = ({url, text, nav}) => {
 
 class FacebookHome extends React.Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      json: [{
+        template: {
+          items: [{attributes: { title: '' } }],
+        }
+      }],
+      loading: true,
+    }
+  }
+
+  async componentDidMount() {
+    const appName = 'starbucks'
+    const data = await fetch(`https://airapps-api.now.sh/apps`) //this.fakeFetch()
+    const json = (await data.json()).data
+    console.log(json)
+    this.setState({json})
+  }
   render() {
+    console.log(this.state.json[0].template.items[0].attributes.title)
     const {width, height} = Dimensions.get('window')
     return (
       <View style={{flex:1, backgroundColor: 'rgba(0,0,0,0)'}}>
@@ -67,12 +87,12 @@ class FacebookHome extends React.Component {
       <Text style={{marginTop:65, marginLeft: 10, fontWeight: '400', fontFamily: 'Helvetica Neue'}}> Near you </Text>
 
       {/* render location images */}
+
       <FlatList
-        data= {[ {key: 'a', url: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/aaa.jpg', text: 'Apple Palo Alto'}, {text: 'Mexican', key: 'b', url: 'https://media-cdn.tripadvisor.com/media/photo-s/03/9e/df/45/mi-casa-mexican-restaurant.jpg'}]}
-      renderItem={({item}) => <LocationImage url={item.url} text={item.text} nav={this.props.navigation}/> }
+        data={this.state.json}
+      renderItem={({item}) => <LocationImage url={item.imageUrl} text={item.template.items[0].attributes.title} key={item._id} nav={this.props.navigation}/> }
         horizontal
       />
-
       </View>
     )
   }
