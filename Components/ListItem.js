@@ -11,12 +11,12 @@ export class ListItem extends Component {
   }
 
   render() {
-    const {text, imageURL, key} = this.props;
+    const {text, imageURL, key, price = "$10"} = this.props;
 
     return (
       <View key={key} stlye={styles.listitem}>
         <Image style={styles.image} source={{uri: imageURL}} />
-        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.text}>{price} {text}</Text>
       </View>
     );
   }
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginRight: 6,
     marginBottom: 6,
-    width: 100,
-    height: 100,
+    width: 200,
+    height: 200,
     borderRadius: 14,
   },
 });

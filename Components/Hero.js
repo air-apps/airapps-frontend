@@ -17,7 +17,7 @@ class Hero extends Component {
   render() {
     const {width,height} = Dimensions.get('window')
     return (
-      <View style={{flex:1, flexDirection: 'column', backgroundColor: 'rgba(0,0,0,1)'}}>
+      <View style={{height: 250, flexDirection: 'column', backgroundColor: 'rgba(0,0,0,1)'}}>
         <NavBar 
           nav={this.props.nav}
         />
