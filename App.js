@@ -11,6 +11,41 @@ export default class App extends React.Component {
       json: {items: []},
       loading: true,
     }
+
+    global.PaymentRequest = require('react-native-payments').PaymentRequest;
+
+    const DETAILS = {
+      id: 'basic-example',
+      displayItems: [
+        {
+          label: 'Movie Ticket',
+          amount: { currency: 'USD', value: '15.00' }
+        }
+      ],
+      total: {
+        label: 'Merchant Name',
+        amount: { currency: 'USD', value: '15.00' }
+      }
+    };
+
+    const METHOD_DATA = [{
+      supportedMethods: ['apple-pay'],
+      data: {
+        merchantIdentifier: 'merchant.com.your-app.namespace',
+        supportedNetworks: ['visa', 'mastercard', 'amex'],
+        countryCode: 'US',
+        currencyCode: 'USD',
+        paymentMethodTokenizationParameters: {
+        parameters: {
+          gateway: 'stripe',
+          'stripe:publishableKey': 'your_publishable_key',
+        }
+      }
+      }
+    }];
+
+    const paymentRequest = new PaymentRequest(METHOD_DATA, DETAILS);
+    
   }
 
    fakeFetch () {
