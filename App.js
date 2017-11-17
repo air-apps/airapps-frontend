@@ -1,10 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 StatusBar.setBarStyle('light-content', true);
-import { StyleSheet, TouchableHighlight, Dimensions, Image, Text, View, Button, FlatList } from 'react-native';
+import { StyleSheet, TouchableHighlight, Dimensions, Image, Text, View, FlatList } from 'react-native';
 import { parseJson } from './utils/jsonHelper.js'
-import Hero from './Components/Hero'
-import {Promise} from 'es6-promise'
 import NavBar from './Components/NavBar.js'
 import {
   StackNavigator,
@@ -15,61 +13,19 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      json: {items: []},
+      json: {
+        template: {
+          items: [],
+        }
+      },
       loading: true,
     }
   }
 
-   fakeFetch () {
-      return new Promise((resolve) => {
-        setTimeout(() => resolve(
-          { items: [
-            {type: 'header', attributes: {title: 'Apple Palo Alto', tag: '@ApplePaloAlto', location: 'Apple Palo Alto', imageUrl: 'https://s3-ap-southeast-2.amazonaws.com/assets-ncu4cpljpr5b/facebook_hack/asda.jpg' } },
-            {
-              type: 'loyalty',
-              attributes:
-              {
-                title: 'Starbucks Loyalty Points',
-                value: '100'
-              }
-            },
-            {
-              type: 'coupon',
-              attributes:
-              {
-                title: 'Deal of the day boys',
-                description: 'Present this hot shit in store for a gr8 deal',
-                imageURL: 'https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fjoshparnham.com&chs=180x180&choe=UTF-8&chld=L|2'
-              }
-            },
-            {
-              type: 'list',
-              attributes: [
-                {
-                  text: 'List item',
-                  imageURL:
-                      'https://www.facebook.com/apple-touch-icon.png',
-                  key: '1'
-                },
-                {
-                  text: 'List item2 ',
-                  imageURL:
-                      'https://www.facebook.com/apple-touch-icon.png',
-                  key: '2'
-                }
-              ]
-            }
-          
-          ],
-            loading: false
-          }
-        ), 1000)
-      })
-    }
-
   async componentDidMount() {
-    // This is where we get the custom json
-    const json = await this.fakeFetch()
+    const appName = 'starbucks'
+    const data = await fetch(`https://airapps-api.now.sh/apps/${appName}`) //this.fakeFetch()
+    const json = (await data.json()).data
     this.setState({json})
   }
 
@@ -89,7 +45,6 @@ const LocationImage = ({url, text, nav}) => {
   if (text.length > 11) {
     text = text.slice(0,11).trim() + '..'
   }
-  console.log(nav.navigate)
   return (
     <View style={{marginLeft: 15, marginTop: 7, alignItems:'center', justifyContent:'center'}} >
     <TouchableHighlight onPress={() =>nav.navigate('Location')} underlayColor={'rgba(0,0,0,0)'}>
