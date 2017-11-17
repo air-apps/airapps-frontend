@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { ListItem } from './ListItem';
 
@@ -17,10 +17,15 @@ export class List extends Component {
   render() {
     const {listitems} = this.props;
 
-    return (listitems.map((item) => <ListItem
-    text={item.text}
-    imageURL={item.imageURL}
-    key={item.key}
-    />))
+    return (
+      <FlatList
+        horizontal={true}
+        data={listitems}
+        renderItem={({item}) => <ListItem
+              text={item.text}
+              imageURL={item.imageURL}
+              key={item.key}
+            />}
+      />)
   }
 }
