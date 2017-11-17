@@ -24,7 +24,8 @@ export class ListItem extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 15,
   },
   image: {
     marginLeft: 5,
