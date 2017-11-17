@@ -5,6 +5,7 @@ import Heading from '../Components/Heading'
 import Hero from '../Components/Hero'
 import {Loyalty} from '../Components/Loyalty';
 import {CouponQRCode} from '../Components/CouponQRCode'
+import LotsOfItems from '../Components/LotsOfItems.js'
 
 export const parseJson = (json, navigation) => {
      return Object.keys(json.template.items).map((index) => {
@@ -31,6 +32,11 @@ export const parseJson = (json, navigation) => {
             location={item.attributes.location}
             imageUrl={item.attributes.imageUrl}
           />)
+        case 'products':
+           console.log('apple')
+           return ( <LotsOfItems
+             products={item.attributes}
+             />)
          default:
            return 
        }

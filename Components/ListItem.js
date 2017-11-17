@@ -17,12 +17,12 @@ export class ListItem extends Component {
   }
 
   render() {
-    const {text, imageURL, key, price = "$10"} = this.props;
+    const {text, imageURL, key, price = "$10", width=200, height=200, BoxWidth} = this.props;
 
     return (
       <TouchableHighlight onPress={() => this.tapItem(price, text)}>
         <View key={key} stlye={styles.listitem}>
-          <Image style={styles.image} source={{uri: imageURL}} />
+        <Image style={{height: height, width: width, marginLeft: 6, marginRight: 6, marginBottom: 6, borderRadius: 14}} source={{uri: imageURL}} />
           <Text style={styles.text}>{price} {text}</Text>
         </View>
       </TouchableHighlight>
@@ -43,8 +43,6 @@ const styles = StyleSheet.create({
     marginLeft: 6,
     marginRight: 6,
     marginBottom: 6,
-    width: 200,
-    height: 200,
     borderRadius: 14,
   },
 });
